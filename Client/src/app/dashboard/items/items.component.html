@@ -1,0 +1,61 @@
+<nb-card>
+  <nb-card-header>Welcome to Mini Ebay Store</nb-card-header>
+
+  <nb-card-body>
+
+    <!-- creation of products -->
+
+    <div *ngIf="divaya">
+      
+            Name: <input #name required>
+            Price: <input #price required>
+            Seller: <input #seller required>
+            <input type="submit" class="btn btn-hero-success main-btn" (click)="createProducts({name: name.value, price: price.value, sellerName: seller.value})" value="Done">
+            <input type="submit" class="btn btn-hero-success main-btn" (click)="removeDiv()" value="Cancel">
+    </div>
+
+   
+  <!-- Update of products -->
+
+    <div id="divaya2" *ngIf="divaya2">
+            Name: <input #name [(ngModel)]=MyName required/>
+            Price: <input #price [(ngModel)]=MyPrice required/>
+            Seller: <input #seller [(ngModel)]=MySeller required/>
+            <input type="submit" class="btn btn-hero-success main-btn" (click) = "removeDiv2()" (click) = "updateProducts({name: name.value, price: price.value, sellerName: seller.value})" value="save">
+            <input type="submit" class="btn btn-hero-success main-btn" (click) = "removeDiv2()" value="Cancel">
+    </div>
+
+   <!-- Table  format-->
+
+  <span>  <button  class="btn btn-hero-success main-btn" (click)="showDiv()">ADD</button></span>
+  <table class="table table-hover table-bordered table-striped">
+    <tr>
+      <th class="text-center">Name</th>
+      <th class="text-center">Price</th>
+      <th class="text-center">CreatedAt</th>
+      <th class="text-center">UpdatedAt</th>
+      <th class="text-center">Seller</th>
+      <th class="text-center"></th>
+
+    </tr>
+      <tr *ngFor="let product of tableData">
+      <!-- The products that are not in edit mode -->
+      <td class="text-center">{{product.name}}</td>
+      <td class="text-center">{{product.price|currency}}</td>
+      <td class="text-center">{{product.createdAt| date}}</td>
+      <td class="text-center">{{product.updatedAt| date}}</td>
+      <td class="text-center">{{product.sellerName}}</td>
+     
+      <!-- Edit/Delete opertaions-->
+      <td> <button  id= "update" (click)="showDiv2(product)" class="btn btn-hero-success main-btn"> 
+      <span>Edit</span> </button> </td>
+      <td> <button  (click)="deleteProducts(product)"  class="btn btn-hero-success main-btn"> 
+      <span>DELETE</span> </button> </td>
+      
+    </tr>
+  </table>
+  </nb-card-body>
+  <nb-card-footer>Thank You for Visiting!</nb-card-footer>
+  </nb-card>
+
+
