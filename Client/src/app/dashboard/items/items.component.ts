@@ -44,12 +44,7 @@ constructor( private itemsService : ItemsService) {}
       self.tableData=prods.data;
       self.tableData=self.tableData.filter(function(element, index,array)
       {
-        return element.sellerName==='Lama'  ||   
-        element.sellerName==='Hisham' || 
-        element.sellerName==='Sarah'  || 
-        element.sellerName==='Nehal' || 
-        element.sellerName==='Yomna' ||
-        element.sellerName==='Nora'; 
+        return element.sellerName==='Lama'  ;
       });
       
     });
@@ -63,7 +58,9 @@ constructor( private itemsService : ItemsService) {}
       var self=this;
       this.itemsService.createProducts(product).
       subscribe();
-      this.reload();
+
+      this.tableData.unshift(product);
+     // this.reload();
    }//end method
 
 
@@ -74,10 +71,11 @@ constructor( private itemsService : ItemsService) {}
     this.itemsService.updateProducts(product, uProduct).
     subscribe();
     
-      // this.getProducts();
-       this.reload();
-       this.reload();
+   // this.tableData.unshift(uProduct);
 
+      // this.getProducts();
+
+      this.reload();
    }
 
 
